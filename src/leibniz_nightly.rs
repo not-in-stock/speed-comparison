@@ -23,7 +23,7 @@ fn main() {
 
     let pi = (2..rounds).step_by(8).fold(pi, |pi, i| {
         let ii = u32x8::splat(i);
-        pi + x / f64x8::from(m2 * (ii + i2) - s2)
+        pi + x / f64x8::from_cast(m2 * (ii + i2) - s2)
     }).reduce_sum() * 4.0;
 
     println!("{:.16}", pi);
