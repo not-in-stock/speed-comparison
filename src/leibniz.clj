@@ -7,7 +7,7 @@
   [^long rounds]
   (let [end (+ 2 rounds)]
     (loop [i 2 x 1.0 pi 1.0]
-      (if (= i end)
+      (if (== i end)
         (* 4 pi)
         (let [x (- x)]
           (recur (inc i) x (+ pi (/ x (dec (* 2 i))))))))))
