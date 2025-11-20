@@ -374,11 +374,14 @@ sbcl:
 
 scala:
   FROM +alpine --src="leibniz.scala"
-  RUN apk add --no-cache clang musl-dev g++
-  RUN wget -q https://github.com/VirtusLab/scala-cli/releases/download/v1.5.1/scala-cli-x86_64-pc-linux-static.gz && \
+  RUN apk add --no-cache clang musl-dev g++ zlib-dev zlib-static
+  RUN wget -q https://github.com/VirtusLab/scala-cli/releases/download/v1.7.1/scala-cli-x86_64-pc-linux-static.gz && \
       gunzip scala-cli-x86_64-pc-linux-static.gz && \
       chmod +x scala-cli-x86_64-pc-linux-static && \
       mv scala-cli-x86_64-pc-linux-static /usr/local/bin/scala-cli
+  # Fetch dependencies first
+  RUN scala-cli compile leibniz.scala --scala 3.5.1 --power
+  # Then build native
   RUN scala-cli package leibniz.scala -o leibniz --scala 3.5.1 --native-version 0.5.5 --native --native-mode release-full --power
   DO +BENCH --name="scala" --lang="Scala" --version="echo 3.5.1" --cmd="./leibniz"
 
