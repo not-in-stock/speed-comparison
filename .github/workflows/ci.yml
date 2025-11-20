@@ -37,11 +37,11 @@ jobs:
           fi
           git checkout -b "$branch" || true
       - name: Download latest earthly
-        run: "sudo /bin/sh -c 'wget https://github.com/earthly/earthly/releases/download/v0.6.26/earthly-linux-amd64 -O /usr/local/bin/earthly && chmod +x /usr/local/bin/earthly'"
+        run: "sudo /bin/sh -c 'wget https://github.com/earthly/earthly/releases/download/v0.8.15/earthly-linux-amd64 -O /usr/local/bin/earthly && chmod +x /usr/local/bin/earthly'"
       - name: Earthly version
         run: earthly --version
       - name: Collect data
-        run: earthly --config earthly-config.yml +${{ inputs.build }}
+        run: earthly --config earthly-config.yml --build-timeout 30m +${{ inputs.build }}
       - name: Analyze data
         run: earthly --config earthly-config.yml +analysis
       - name: Archive test results
