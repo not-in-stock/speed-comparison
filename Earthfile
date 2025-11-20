@@ -216,7 +216,7 @@ go:
   DO +BENCH --name="go" --lang="Go" --version="go version" --cmd="./leibniz"
 
 haskell:
-  FROM haskell:9.4.3-slim
+  FROM haskell:9.6-slim
   DO +PREPARE_DEBIAN
   DO +ADD_FILES --src="leibniz.hs"
   RUN --no-cache ghc -funfolding-use-threshold=16 -O2 -optc-O3 leibniz.hs
