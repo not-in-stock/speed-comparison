@@ -382,7 +382,7 @@ scala:
   # Fetch dependencies first
   RUN scala-cli compile leibniz.scala --scala 3.5.1 --power
   # Then build native
-  RUN scala-cli package leibniz.scala -o leibniz --scala 3.5.1 --native-version 0.5.5 --native --native-mode release-full --power
+  RUN scala-cli package leibniz.scala -o leibniz --scala 3.5.1 --native-version 0.5.5 --native --native-mode release-fast --power
   DO +BENCH --name="scala" --lang="Scala" --version="echo 3.5.1" --cmd="./leibniz"
 
 swift:
