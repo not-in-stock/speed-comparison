@@ -124,7 +124,7 @@ c-clang:
   DO +BENCH --name="c-clang" --lang="C (clang)" --version="clang --version" --cmd="./leibniz"
 
 clj:
-  FROM clojure:temurin-19-tools-deps-alpine
+  FROM clojure:temurin-21-tools-deps-alpine
   DO +PREPARE_ALPINE
   # Seems to be a bug
   RUN apk add --no-cache rlwrap
